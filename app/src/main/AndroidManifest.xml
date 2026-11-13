@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 차량(Android Automotive) 전용 앱 -->
+    <uses-feature android:name="android.hardware.type.automotive" android:required="true" />
+    <uses-feature android:name="android.hardware.wifi" android:required="false" />
+    <uses-feature android:name="android.hardware.screen.portrait" android:required="false" />
+    <uses-feature android:name="android.hardware.screen.landscape" android:required="false" />
+
+    <!-- 쓰는 분야만 선언 (마켓 심사: 안 쓰는 권한 선언 시 탈락) -->
+    <uses-permission android:name="pleos.car.permission.CAR_SEATS" />  <!-- 좌석 탑승 여부 -->
+    <uses-permission android:name="pleos.car.permission.CAR_DRIVE" />  <!-- 기어, 주행거리, 브레이크, 핸들, 크루즈 -->
+    <uses-permission android:name="pleos.car.permission.CAR_ENERGY" /> <!-- 전비·연비, 배터리 잔량 -->
+    <uses-permission android:name="pleos.car.permission.CAR_WINDOWS" /> <!-- 와이퍼(비) -->
+    <uses-permission android:name="android.car.permission.CAR_SPEED" /> <!-- 차속 (AAOS 표준) -->
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="N빵 드라이브"
+        android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <!-- 주행 중에도 표시 (주행 중엔 큰 숫자만 보여 주고 조작 없음). 없으면 D 단에서 시스템이 앱을 가린다. -->
+            <meta-data android:name="distractionOptimized" android:value="true" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
